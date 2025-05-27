@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: ss-auth-mariadb
+    ports:
+      - "${DB_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mariadb_data:/var/lib/mysql  # Named Volume
+      - ./db/mariadb/init-db.sql:/docker-entrypoint-initdb.d/init.sql  # 초기화 스크립트
+    networks:
+      - backend
+    profiles:
+      - mariadb
+
+  postgresql:
+    image: postgres:16
+    container_name: ss-auth-postgresql
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data  # Named Volume
+      - ./db/postgresql/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend
+    profiles:
+      - postgresql
+
+  mongodb:
+    image: mongo:7
+    container_name: ss-auth-mongodb
+    ports:
+      - "${DB_PORT}:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mongodb_data:/data/db  # Named Volume
+      - ./db/mongodb/init.js:/docker-entrypoint-initdb.d/init.js
+    networks:
+      - backend
+    profiles:
+      - mongodb
+
+volumes:
+  mariadb_data:
+  postgresql_data:
+  mongodb_data:
+
+networks:
+  backend:
