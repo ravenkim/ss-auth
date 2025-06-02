@@ -1,10 +1,10 @@
-package com.authserver.auth_core
+package com.example.ssauthserver
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class AuthCoreApplicationTests {
+class SsAuthServerApplicationTests {
 
 	@Test
 	fun contextLoads() {

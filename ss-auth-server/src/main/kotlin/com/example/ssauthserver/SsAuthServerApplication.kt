@@ -1,11 +1,11 @@
-package com.authserver.auth_core
+package com.example.ssauthserver
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class AuthCoreApplication
+class SsAuthServerApplication
 
 fun main(args: Array<String>) {
-	runApplication<AuthCoreApplication>(*args)
+	runApplication<SsAuthServerApplication>(*args)
 }
