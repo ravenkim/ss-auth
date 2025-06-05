@@ -35,3 +35,34 @@ ss-auth/
 └── .gitignore                          # Git에서 무시할 파일들
 
 ```
+
+
+.
+├── main
+│   ├── kotlin
+│   │   └── com
+│   │       └── ssauthserver
+│   │           ├── SsAuthServerApplication.kt
+│   │           ├── auth
+│   │           ├── config
+│   │           │   └── DevStartupLogger.kt
+│   │           └── healthcheck
+│   │               ├── controller
+│   │               │   └── HealthCheckController.kt
+│   │               └── service
+│   │                   └── HealthCheckService.kt
+│   └── resources
+│       ├── application-dev.properties
+│       └── application.properties
+└── test
+└── kotlin
+└── com
+└── ssauthserver
+└── SsAuthServerApplicationTests.kt
+
+
+
+당신의 프로젝트 도메인생기면 
+
+추천 패키지명: kr.limelab.ssauthserver
+폴더 구조: src/main/kotlin/kr/limelab/ssauthserver
