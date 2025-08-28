@@ -7,7 +7,7 @@ plugins {
 
 group = "com.ss"
 version = "0.0.1-SNAPSHOT"
-description = "Demo project for Spring Boot"
+description = "auth"
 
 java {
 	toolchain {
