@@ -10,10 +10,7 @@ import java.util.*
 import javax.crypto.SecretKey
 
 @Component
-class JwtProvider {
-
-    @Value("${jwt.secret}")
-    private lateinit var secret: String
+class JwtProvider(@Value("\${jwt.secret}") private val secret: String) {
 
     private val key: SecretKey by lazy {
         Keys.hmacShaKeyFor(secret.toByteArray())
@@ -34,7 +31,7 @@ class JwtProvider {
 
     fun validateToken(token: String): Boolean {
         return try {
-            Jwts.parser().verifyWith(key).build().parseSignedClaims(token)
+            Jwts.parser().verifyWith(key as javax.crypto.SecretKey).build().parseSignedClaims(token)
             true
         } catch (e: Exception) {
             false
@@ -42,10 +39,10 @@ class JwtProvider {
     }
 
     fun getUsernameFromToken(token: String): String {
-        return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).payload.subject
+        return Jwts.parser().verifyWith(key as javax.crypto.SecretKey).build().parseSignedClaims(token).payload.subject
     }
 
     fun getClaimsFromToken(token: String): Claims {
-        return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).payload
+        return Jwts.parser().verifyWith(key as javax.crypto.SecretKey).build().parseSignedClaims(token).payload
     }
 }
