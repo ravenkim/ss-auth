@@ -12,10 +12,10 @@ import org.springframework.security.oauth2.server.authorization.settings.ClientS
 import java.util.*
 
 @Configuration
-class RegisteredClientConfig {
+open class RegisteredClientConfig {
 
     @Bean
-    fun registeredClientRepository(): RegisteredClientRepository {
+    open fun registeredClientRepository(): RegisteredClientRepository {
         val registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
             .clientId("api-client")
             .clientSecret("{noop}secret")

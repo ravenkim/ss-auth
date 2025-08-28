@@ -27,11 +27,11 @@ import java.security.interfaces.RSAPublicKey
 import java.util.*
 
 @Configuration
-class AuthorizationServerConfig {
+open class AuthorizationServerConfig {
 
     @Bean
     @Order(1)
-    fun authorizationServerSecurityFilterChain(http: HttpSecurity): SecurityFilterChain {
+    open fun authorizationServerSecurityFilterChain(http: HttpSecurity): SecurityFilterChain {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http)
         http.getConfigurer(OAuth2AuthorizationServerConfigurer::class.java)
             .oidc(Customizer.withDefaults())
@@ -45,19 +45,19 @@ class AuthorizationServerConfig {
     
 
     @Bean
-    fun jwkSource(): JWKSource<SecurityContext> {
+    open fun jwkSource(): JWKSource<SecurityContext> {
         val rsaKey = generateRsa()
         val jwkSet = JWKSet(rsaKey)
         return JWKSource { jwkSelector, securityContext -> jwkSelector.select(jwkSet) }
     }
 
     @Bean
-    fun jwtDecoder(jwkSource: JWKSource<SecurityContext>): JwtDecoder {
+    open fun jwtDecoder(jwkSource: JWKSource<SecurityContext>): JwtDecoder {
         return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource)
     }
 
     @Bean
-    fun authorizationServerSettings(): AuthorizationServerSettings {
+    open fun authorizationServerSettings(): AuthorizationServerSettings {
         return AuthorizationServerSettings.builder().build()
     }
 

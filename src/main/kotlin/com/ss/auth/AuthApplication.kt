@@ -25,17 +25,14 @@ class ApplicationStartupListener(
 		val port = environment.getProperty("server.port", "8080")
 		val contextPath = environment.getProperty("server.servlet.context-path", "")
 		
-		println("=" * 60)
+		println("=".repeat(60))
 		println("🎉 SS Authentication Service is Ready!")
-		println("=" * 60)
 		println("📖 Swagger UI: http://localhost:$port$contextPath/swagger-ui.html")
 		println("📚 API Docs: http://localhost:$port$contextPath/api-docs")
 		println("🔗 Health Check: http://localhost:$port$contextPath/api/health")
 		println("ℹ️  Service Info: http://localhost:$port$contextPath/api/info")
 		println("🔐 Traditional Login: http://localhost:$port$contextPath/api/auth/traditional/login")
 		println("🌐 SSO Status: http://localhost:$port$contextPath/api/auth/sso/status")
-		println("=" * 60)
-		println("💡 Use Swagger UI to test all APIs!")
-		println("=" * 60)
+		println("=".repeat(60))
 	}
 }

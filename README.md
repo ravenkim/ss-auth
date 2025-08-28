@@ -63,10 +63,26 @@ spring.security.oauth2.client.registration.naver.client-secret=<your-naver-clien
 ./gradlew bootRun
 ```
 
-### 3. Swagger UI 접속
+### 3. 시작 메시지 확인
+애플리케이션이 시작되면 콘솔에 다음과 같은 정보가 출력됩니다:
+
 ```
-http://localhost:8080/api/swagger-ui.html
+============================================================
+🎉 SS Authentication Service is Ready!
+============================================================
+📖 Swagger UI: http://localhost:8080/api/swagger-ui.html
+📚 API Docs: http://localhost:8080/api/api-docs
+🔗 Health Check: http://localhost:8080/api/api/health
+ℹ️  Service Info: http://localhost:8080/api/api/info
+🔐 Traditional Login: http://localhost:8080/api/api/auth/traditional/login
+🌐 SSO Status: http://localhost:8080/api/api/auth/sso/status
+============================================================
+💡 Use Swagger UI to test all APIs!
+============================================================
 ```
+
+### 4. Swagger UI 접속
+위의 콘솔 메시지에서 제공되는 Swagger UI 주소로 접속하여 API를 테스트할 수 있습니다.
 
 ## API 엔드포인트
 

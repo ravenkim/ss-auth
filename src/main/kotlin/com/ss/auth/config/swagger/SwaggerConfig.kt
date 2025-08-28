@@ -12,12 +12,12 @@ import org.springframework.context.event.EventListener
 import org.springframework.core.env.Environment
 
 @Configuration
-class SwaggerConfig(
+open class SwaggerConfig(
     private val environment: Environment
 ) {
 
     @Bean
-    fun openAPI(): OpenAPI {
+    open fun openAPI(): OpenAPI {
         return OpenAPI()
             .info(
                 Info()
@@ -37,18 +37,5 @@ class SwaggerConfig(
             )
     }
 
-    @EventListener(ApplicationReadyEvent::class)
-    fun printSwaggerUrl() {
-        val port = environment.getProperty("server.port", "8080")
-        val contextPath = environment.getProperty("server.servlet.context-path", "")
-        
-        println("=" * 60)
-        println("🚀 SS Authentication Service Started!")
-        println("=" * 60)
-        println("📖 Swagger UI: http://localhost:$port$contextPath/swagger-ui.html")
-        println("📚 API Docs: http://localhost:$port$contextPath/api-docs")
-        println("🔗 Health Check: http://localhost:$port$contextPath/api/health")
-        println("ℹ️  Service Info: http://localhost:$port$contextPath/api/info")
-        println("=" * 60)
-    }
+
 }
